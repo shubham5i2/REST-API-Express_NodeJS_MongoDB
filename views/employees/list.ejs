@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Document</title>
+  </head>
+  <body class="bg-info">
+    <div class="container">
+      <h3 class="mainHeading">List of all employees</h3>
+      <a href="/employees" class="btn btn-primary btn-sm mb-3"
+        ><i class="fa fa-plus"></i> Add Employee</a
+      >
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% employee.forEach(employee=>{ %>
+          <tr>
+            <td><%= employee.fullname %></td>
+            <td><%= employee.age %></td>
+            <td><%= employee.gender %></td>
+            <td><%= employee.email %></td>
+            <td><%= employee.city %></td>
+            <td><%= employee.country %></td>
+            <td class="clickbtn">
+              <a
+                href="edit/<%= employee.id %> "
+                class="btn btn-secondary btn-sm d-flex flex-row mt-0"
+                ><i class="fa fa-pencil"></i> Edit</a
+              >
+              <form
+                action="/employees/<%= employee.id %>?_method=DELETE"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-danger btn-sm d-flex flex-row"
+                >
+                  <i class="fa fa-trash"></i> Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
